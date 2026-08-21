@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = `${import.meta.env.BASE_URL}/`;
+const pillars = [
+  ['Deploy','Configurations, macros, branding, certificates and content across your fleet.'],
+  ['Validate','Find configuration drift, compare baselines and understand compliance.'],
+  ['Automate','Schedule repeatable jobs, chain templates and scale routine operations.']
+];
+---
+<BaseLayout title="CE-Deploy — Deploy. Manage. Automate." description="CE-Deploy brings deployment, validation and automation together for collaboration device fleets.">
+  <section class="hero"><div class="container"><div class="eyebrow">Fleet operations, without the busywork</div><h1>Deploy. Manage.<br/><span class="gradient">Automate.</span></h1><p class="lead">One practical desktop workspace for repeatable deployments, configuration assurance and day-to-day operations across cloud and on-premises environments.</p><div class="actions"><a class="button" href="https://github.com/voipnorm/CE-Deploy/releases/latest">Download CE-Deploy</a><a class="button secondary" href={`${base}features/`}>Explore features</a></div></div></section>
+  <section><div class="container"><div class="section-heading"><div class="eyebrow">One tool. Your whole fleet.</div><h2>Less repetition. More control.</h2><p>Build consistent workflows for ten devices or thousands, with the visibility to know what changed and what needs attention.</p></div><div class="grid-3">{pillars.map(([title,copy],i)=><article class="card"><div class="icon">{String(i+1).padStart(2,'0')}</div><h3>{title}</h3><p>{copy}</p></article>)}</div></div></section>
+  <section class="band"><div class="container"><div class="section-heading"><div class="eyebrow">Flexible by design</div><h2>Cloud or on-premises.</h2><p>Work with the environments you operate today while keeping the product architecture ready for what comes next.</p></div><div class="flow"><div class="node">Cloud APIs</div><div class="arrow">→</div><div class="node center"><strong>CE-Deploy</strong><br/><small>Unified operations</small></div><div class="arrow">→</div><div class="node">Direct connectivity</div></div></div></section>
+  <section><div class="container"><div class="sponsor"><div><div class="eyebrow">Supported by the community</div><h2>Be the first to sponsor CE-Deploy.</h2><p>Help fund continued development, testing, documentation and new capabilities.</p></div><a class="button" href="https://buymeacoffee.com/voipnorm">Sponsor CE-Deploy</a></div></div></section>
+</BaseLayout>

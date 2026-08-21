@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const groups: [string, string[]][] = [
+ ['Deploy',['Configurations and bulk commands','Macros and UI extensions','Branding, wallpapers and signage','Certificates and phonebooks']],
+ ['Operate',['Fleet inventory and device management','Environmental intelligence','Remote interaction with PhonePilot','Direct troubleshooting workflows']],
+ ['Validate',['Config Auditor and baselines','Macro drift detection','Compliance scoring and CSV export','Preflight checks and dry runs']],
+ ['Automate',['Scheduled and recurring jobs','Reusable deployment templates','Multi-step template chains','Ansible inventory export']],
+ ['Develop',['xAPI Forge workspace','Macro development tools','Command search and utilities','Reusable operational building blocks']],
+ ['Organize',['Cloud and on-premises organizations','Tags and flexible targeting','Deployment history','Multi-organization workflows']]
+];
+---
+<BaseLayout title="Features — CE-Deploy" description="Explore deployment, operations, validation, automation and development capabilities in CE-Deploy."><div class="page-hero"><div class="container"><div class="eyebrow">Capabilities</div><h1>From one-off changes to repeatable operations.</h1><p>CE-Deploy brings the practical tools of fleet management into one focused desktop application.</p></div></div><section><div class="container grid-3">{groups.map(([title,items],i)=><article class="card"><div class="icon">{String(i+1).padStart(2,'0')}</div><h3>{title}</h3><ul class="feature-list">{items.map(item=><li>{item}</li>)}</ul></article>)}</div></section></BaseLayout>
