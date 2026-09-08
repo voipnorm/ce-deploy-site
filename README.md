@@ -15,4 +15,4 @@ npm run dev
 npm run build
 ```
 
-The site is configured for `https://voipnorm.github.io/ce-deploy-site/`.
+The site is configured for `https://ce-deploy.voipnorm.com/`.

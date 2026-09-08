@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-const base = `${import.meta.env.BASE_URL}/`;
+const base = import.meta.env.BASE_URL;
 const pillars = [
   ['Deploy','Configurations, macros, branding, certificates and content across your fleet.'],
   ['Validate','Find configuration drift, compare baselines and understand compliance.'],

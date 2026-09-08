@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://voipnorm.github.io',
-  base: '/ce-deploy-site',
+  site: 'https://ce-deploy.voipnorm.com',
+  base: '/',
   output: 'static'
 });
