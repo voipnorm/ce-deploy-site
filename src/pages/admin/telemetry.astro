@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow,noarchive" /><meta name="referrer" content="no-referrer" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src https://qgnnceoecflhbimcmrya.supabase.co; base-uri 'none'; form-action 'none'; object-src 'none'" />
+  <link rel="stylesheet" href="/admin/telemetry.css" /><title>Private telemetry — CE-Deploy</title><link rel="icon" href="/favicon.svg" />
+</head>
+<body>
+<header><a class="brand" href="/"><img src="/ce-deploy-mark.svg" alt="" width="36" height="36" /><span>CE-Deploy <small>Private telemetry</small></span></a><span class="private-label">Owner access only</span></header>
+<main>
+  <section id="auth-panel" class="panel login">
+    <p class="eyebrow">Private dashboard</p><h1>Sign in to telemetry</h1>
+    <p>Use your authorized email address. Supabase will send a one-time sign-in code.</p>
+    <form id="email-form"><label for="email">Email address</label><input id="email" type="email" autocomplete="email" required /><button type="submit" id="send-code">Send sign-in code</button></form>
+    <form id="code-form" hidden><label for="code">Code from your email</label><input id="code" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6,10}" minlength="6" maxlength="10" required /><button type="submit" id="verify-code">Sign in</button><button type="button" id="change-email" class="secondary">Use another email</button></form>
+    <p class="small">Your session stays in this tab’s memory. Reloading or closing the page signs you out.</p>
+  </section>
+  <p id="status" role="status" aria-live="polite"></p>
+  <div id="dashboard" hidden>
+    <div class="intro"><div><p class="eyebrow">Community insights · Private</p><h1>Installation activity</h1><p>Aggregate observations from optional acquisition telemetry.</p></div><div class="actions"><button id="refresh" type="button">Refresh</button><button id="sign-out" type="button" class="secondary">Sign out</button></div></div>
+    <div class="toolbar"><div class="periods" aria-label="Reporting window">{[1,7,30,90,180].map(days=><button type="button" data-days={days} aria-pressed={days===30}>{days===1?'24 hours':`${days} days`}</button>)}</div><p id="updated" class="small">No snapshot loaded</p></div>
+    <div id="empty" class="panel" hidden>No reporting installations in this window. Choose a longer period or refresh after new telemetry arrives.</div>
+    <div id="results"></div>
+    <p class="privacy-note">Only aggregates are returned. No installation identifiers, deletion credentials, IP addresses, organization identities, or raw event rows are sent to this browser. Data is fetched on sign-in, window changes, or manual refresh.</p>
+  </div>
+</main>
+<script src="../../scripts/telemetry.ts"></script>
+</body></html>
