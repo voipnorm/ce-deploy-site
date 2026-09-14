@@ -77,10 +77,13 @@ owner. Do not run concurrently with its own cleanup.
 
 ## Validation evidence
 
-- 27 handler/UI tests passed, including empty datasets, absent endpoint counts,
+- 28 handler/UI tests passed, including empty datasets, absent endpoint counts,
   request validation, 401/403/503, raw-field canaries, and late-response sign-out.
 - Rollback-only hosted migration rehearsal passed for all windows and aggregate
   totals compared to raw counts inside the database (raw rows were not returned).
 - Hosted anonymous and real authenticated non-owner tests passed; test account removed.
 - Owner's confirmed Auth account exists. Final human email-code sign-in is required
   to verify actual mailbox delivery and the live owner dashboard end to end.
+
+- Live response validation includes stable, legacy beta, private-beta, public-beta, and development channels.
+- Existing npm audit findings affect Astro/build image-processing dependencies; no new findings were introduced by happy-dom. This static deployment exposes no Astro image-optimization server or user-upload pipeline. Dependency remediation is separate from this dashboard change.

@@ -2,6 +2,7 @@
 import { execFileSync } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
 import assert from 'node:assert/strict';
+import { projectAggregate } from '../supabase/functions/internal-telemetry-dashboard/handler.mjs';
 const cli = process.env.SUPABASE_CLI || '../CE-Deploy3.0/node_modules/.bin/supabase';
 const keys = JSON.parse(execFileSync(cli,['projects','api-keys','--project-ref','qgnnceoecflhbimcmrya','--output','json','--reveal'],{encoding:'utf8',stdio:['ignore','pipe','pipe']}));
 const anon=keys.find(k=>k.name==='anon').api_key, service=keys.find(k=>k.name==='service_role').api_key;
@@ -11,6 +12,11 @@ async function request(path,{method='GET',key=anon,token,body}={}){
 }
 let id;
 try {
+ for (const days of [1,7,30,90,180]) {
+  const r=await request('/rest/v1/rpc/telemetry_dashboard',{method:'POST',key:service,token:service,body:{p_days:days}});
+  assert.ok(r.ok); projectAggregate(await r.json(),days);
+ }
+ console.log('PASS hosted aggregate response projection: all reporting windows');
  for(const token of [undefined,'invalid-token']){
   const r=await request('/functions/v1/internal-telemetry-dashboard',{method:'POST',token,body:{days:30}});assert.equal(r.status,401);console.log('PASS hosted 401: '+(token?'invalid token':'missing token'));
  }

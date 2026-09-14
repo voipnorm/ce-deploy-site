@@ -1,6 +1,6 @@
 export const OWNER = 'chris.norman@hotmail.com';
 const windows = [1, 7, 30, 90, 180];
-const channels = ['stable', 'beta', 'development'];
+const channels = ['stable', 'beta', 'development', 'private-beta', 'public-beta'];
 const sources = ['cloud_inventory', 'on_prem_inventory', 'deployment_scope', 'cached_inventory', 'unavailable'];
 const confidences = ['complete', 'partial', 'lower_bound', 'stale', 'unavailable'];
 function number(value) {
