@@ -1,5 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-const docs=['Getting started','Connect a cloud organization','Add on-premises devices','Run your first deployment','Build reusable templates','Audit configuration drift','Schedule and automate work','Troubleshooting'];
+const base = import.meta.env.BASE_URL;
+const lessons = [
+  ['01', 'Choose the right targets', 'Select one device by name, verify its Device ID, and prove the resolved target with Pre-flight.', 'lesson-1'],
+  ['02', 'Run xAPI and capture output', 'Use schema search, validate the command, and open the Command Output Report.', 'lesson-2'],
+  ['03', 'Make CSV work reliably', 'Build a pilot CSV from current inventory and verify its delimiter, columns, and device count.', 'lesson-3'],
+  ['04', 'Use CE-Deploy through a TLS proxy', 'Configure the proxy, trust the inspection CA, and run Webex Diagnostics.', 'lesson-4'],
+  ['05', 'Deploy macros safely', 'Upload, review, configure, pilot, and verify a JavaScript macro.', 'lesson-5'],
+];
 ---
-<BaseLayout title="Documentation — CE-Deploy" description="Quick-start documentation and operational guides for CE-Deploy."><div class="page-hero"><div class="container"><div class="eyebrow">Documentation</div><h1>Start simple. Scale when you’re ready.</h1><p>The initial documentation hub provides the path into CE-Deploy. Detailed guides will be added here as the site grows.</p></div></div><section><div class="container grid-2"><article class="card"><h2>Quick start</h2><ol><li>Download the latest release for macOS or Windows.</li><li>Add a cloud organization or on-premises environment.</li><li>Discover devices and select a target.</li><li>Choose a deployment type, validate and run.</li></ol><a class="button" href="https://github.com/voipnorm/CE-Deploy/releases/latest">Get the latest release</a></article><article class="card doc-list"><h2>Guide library</h2>{docs.map(doc=><a href="https://github.com/voipnorm/CE-Deploy#readme">{doc}<span>→</span></a>)}</article></div></section></BaseLayout>
+<BaseLayout title="Documentation — CE-Deploy" description="Practical CE-Deploy training and operational guides.">
+  <div class="page-hero"><div class="container"><div class="eyebrow">Documentation</div><h1>Learn the workflows that matter in the field.</h1><p>Start with five guided lessons built from common customer and partner questions. Every lesson gives you the exact path through CE-Deploy, a safe pilot, and a result to verify.</p><div class="actions"><a class="button" href={`${base}documentation/training/`}>Start the field course</a><a class="button secondary" href="https://github.com/voipnorm/CE-Deploy/releases/latest">Get the latest release</a></div></div></div>
+  <section><div class="container"><div class="section-heading"><div class="eyebrow">Field course</div><h2>Five guided workflows</h2><p>Follow them in order or open the issue you need to solve today.</p></div><div class="guide-grid">{lessons.map(([number,title,description,anchor]) => <a class="guide-card" href={`${base}documentation/training/#${anchor}`}><span>{number}</span><h3>{title}</h3><p>{description}</p><b>Open lesson →</b></a>)}</div></div></section>
+</BaseLayout>
+<style>.actions{margin-top:28px}.guide-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.guide-card{padding:27px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.012));transition:.16s}.guide-card:hover{transform:translateY(-2px);border-color:#456482}.guide-card>span,.guide-card>b{color:var(--cyan);font-weight:800}.guide-card h3{font-size:1.25rem;margin:14px 0 6px}.guide-card p{color:var(--muted);margin:0 0 22px}@media(max-width:700px){.guide-grid{grid-template-columns:1fr}}</style>

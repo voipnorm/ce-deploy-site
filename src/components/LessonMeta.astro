@@ -1,0 +1,6 @@
+---
+interface Props { prerequisites: string; materials: string; result: string; }
+const { prerequisites, materials, result } = Astro.props;
+---
+<div class="lesson-meta"><div><b>Prerequisites</b><span>{prerequisites}</span></div><div><b>Materials</b><span>{materials}</span></div><div><b>Success evidence</b><span>{result}</span></div></div>
+
