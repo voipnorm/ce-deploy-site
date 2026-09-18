@@ -11,7 +11,7 @@ const features = [
   ['New Automation feature', false],
 ];
 ---
-<BaseLayout title="Membership — CE-Deploy" description="Compare CE-Deploy Free, Pro at $50 per month, and Partner Plus at $100 per month. Existing features stay free. Paid tiers are coming soon.">
+<BaseLayout title="Membership — CE-Deploy" description="Compare CE-Deploy Free, Pro at $50 per month, and Partner Plus at $100 per month. Existing features stay free. Explore paid memberships on Buy Me a Coffee.">
   <div class="page-hero membership-hero">
     <div class="container">
       <div class="eyebrow">Membership</div>
@@ -38,7 +38,6 @@ const features = [
           <div class="plan-action"><a class="button secondary" href={`${base}downloads/`}>Download Free</a></div>
         </article>
         <article class="card plan pro-plan">
-          <span class="plan-status">Coming soon</span>
           <h2>Pro</h2>
           <p class="plan-summary">For operators ready to add the new Automation feature.</p>
           <p class="price"><strong>$50</strong><span>/ month</span></p>
@@ -46,12 +45,11 @@ const features = [
             <li>Everything in Free</li>
             <li>New Automation feature</li>
             <li>Two computer activations</li>
-            <li>30-day Pro trial at launch</li>
+            <li>30-day Pro trial</li>
           </ul>
-          <p class="plan-action launch-note">Pro membership is coming soon.</p>
+          <div class="plan-action"><a class="button" href="https://buymeacoffee.com/voipnorm" aria-label="Explore Pro membership on Buy Me a Coffee">View membership on BMC</a></div>
         </article>
         <article class="card plan">
-          <span class="plan-status">Coming soon</span>
           <h2>Partner Plus</h2>
           <p class="plan-summary">For partners managing multiple customer organizations.</p>
           <p class="price"><strong>$100</strong><span>/ month</span></p>
@@ -60,12 +58,12 @@ const features = [
             <li>Delegated customer organization management</li>
             <li>Four computer activations</li>
             <li>Up to 30 selected customer organizations per computer, plus 30 ordinary connections</li>
-            <li>Separate 30-day Partner Plus trial at launch</li>
+            <li>Separate 30-day Partner Plus trial</li>
           </ul>
-          <p class="plan-action launch-note">Partner Plus membership is coming soon.</p>
+          <div class="plan-action"><a class="button" href="https://buymeacoffee.com/voipnorm" aria-label="Explore Partner Plus membership on Buy Me a Coffee">View membership on BMC</a></div>
         </article>
       </div>
-      <p class="plans-note">Paid-tier pricing is monthly. Pro and Partner Plus are not yet available in the public release.</p>
+      <p class="plans-note">Paid-tier pricing is monthly. Explore Pro and Partner Plus memberships on Buy Me a Coffee.</p>
     </div>
   </section>
 
@@ -74,15 +72,15 @@ const features = [
       <div class="section-heading">
         <div class="eyebrow">Compare plans</div>
         <h2 id="comparison-heading">What’s included.</h2>
-        <p>Your existing tools remain free. Paid memberships add capabilities as they become available.</p>
+        <p>Your existing tools remain free. Pro adds Automation, and Partner Plus adds delegated customer management.</p>
       </div>
       <div class="comparison-scroll" role="region" aria-label="Membership feature comparison" tabindex="0">
         <table>
-          <caption>Free is available now. Pro and Partner Plus are coming soon.</caption>
+          <caption>Compare Free, Pro, and Partner Plus memberships.</caption>
           <thead><tr><th scope="col">Capability</th><th scope="col">Free</th><th scope="col">Pro</th><th scope="col">Partner Plus</th></tr></thead>
           <tbody>
-            {features.map(([label, free]) => <tr><th scope="row">{label}</th><td>{free ? 'Included' : 'Not included'}</td><td>{free ? 'Included' : 'At launch'}</td><td>{free ? 'Included' : 'At launch'}</td></tr>)}
-            <tr><th scope="row">Delegated customer management</th><td>Not included</td><td>Not included</td><td>At launch</td></tr>
+            {features.map(([label, free]) => <tr><th scope="row">{label}</th><td>{free ? 'Included' : 'Not included'}</td><td>Included</td><td>Included</td></tr>)}
+            <tr><th scope="row">Delegated customer management</th><td>Not included</td><td>Not included</td><td>Included</td></tr>
             <tr><th scope="row">Paid membership computer activations</th><td>Not applicable</td><td>2</td><td>4</td></tr>
             <tr><th scope="row">Paid-tier trial</th><td>Not needed</td><td>30 days</td><td>30 days</td></tr>
           </tbody>
@@ -96,9 +94,9 @@ const features = [
       <div class="section-heading"><div class="eyebrow">Good to know</div><h2 id="questions-heading">Membership questions.</h2></div>
       <details open><summary>Will any of my existing tools become paid features?</summary><p>No. All existing CE-Deploy 16.3.7 functionality stays in Free, including the deployment scheduler, recurring jobs, templates, and template chains. The new Automation feature is the addition included with Pro and Partner Plus.</p></details>
       <details><summary>Is Macro Designer Pro part of the Pro membership?</summary><p>Macro Designer Pro is an existing tool and remains included in Free. Its name does not mean it requires a paid membership.</p></details>
-      <details><summary>When can I subscribe or start a trial?</summary><p>Pro and Partner Plus are coming soon. Launch details will be published on this site. At launch, each paid tier will offer a 30-day trial that starts only when you explicitly choose to begin it in the app.</p></details>
+      <details><summary>Where can I subscribe or start a trial?</summary><p>Visit <a href="https://buymeacoffee.com/voipnorm">Buy Me a Coffee</a> for Pro and Partner Plus memberships. Each paid tier offers a 30-day trial that starts only when you explicitly choose to begin it in the app.</p></details>
       <details><summary>Can I try Partner Plus after trying Pro?</summary><p>Yes. Partner Plus has its own one-time, 30-day trial, including for people who have already tried or subscribed to Pro. Starting it does not reset your Pro trial dates.</p></details>
-      <details><summary>How does Partner Plus customer access work?</summary><p>Partner Plus will let you select customer organizations available to your Webex partner or external administrator identity and use the applicable CE-Deploy cloud tools in that customer’s context. Each computer can select up to 30 customers in addition to 30 ordinary connections. Customer selections are local to each computer.</p><p>One membership owner manages up to four computer activations, including employee computers. Each operator uses their own Webex identity and permissions. Membership does not grant additional Webex permissions.</p></details>
+      <details><summary>How does Partner Plus customer access work?</summary><p>Partner Plus lets you select customer organizations available to your Webex partner or external administrator identity and use the applicable CE-Deploy cloud tools in that customer’s context. Each computer can select up to 30 customers in addition to 30 ordinary connections. Customer selections are local to each computer.</p><p>One membership owner manages up to four computer activations, including employee computers. Each operator uses their own Webex identity and permissions. Membership does not grant additional Webex permissions.</p></details>
       <details><summary>Does Partner Plus include FedRAMP customer access?</summary><p>The initial delegated customer capability is for commercial Webex. FedRAMP partner support is planned for later. Existing direct FedRAMP organization support remains part of Free.</p></details>
     </div>
   </section>
@@ -117,7 +115,7 @@ const features = [
   .pro-plan { border-color: #4c7b95; background: linear-gradient(145deg,rgba(98,217,236,.08),rgba(113,137,255,.035)); }
   .plan-action { margin: auto 0 0; padding-top: 28px; }
   .plan-action .button { width: 100%; }
-  .launch-note, .plans-note { font-size: .9375rem; color: var(--muted); }
+  .plans-note { font-size: .9375rem; color: var(--muted); }
   .plans-note { margin: 24px 0 0; }
   .comparison-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; }
   table { width: 100%; border-collapse: collapse; min-width: 700px; text-align: left; }
