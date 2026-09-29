@@ -12,6 +12,10 @@ function rows(value, limit) {
   return value;
 }
 function category(value, allowed) { if (!allowed.includes(value)) throw Error('invalid category'); return value; }
+function eventName(value) {
+  if (typeof value !== 'string' || !/^[a-z][a-z0-9_]{1,63}$/.test(value)) throw Error('invalid event name');
+  return value;
+}
 // Explicit projection: even an accidental upstream schema expansion cannot leak raw data.
 export function projectAggregate(data, days) {
   if (!data || data.days !== days) throw Error('invalid aggregate');
@@ -34,6 +38,25 @@ export function projectAggregate(data, days) {
     },
     sources: rows(data.sources, 25).map(r => ({ source: category(r.source, sources), confidence: category(r.confidence, confidences), installations: number(r.installations) })),
     quality: { missing_counts: number(data.quality.missing_counts), uncertain_counts: number(data.quality.uncertain_counts), suspicious_versions: number(data.quality.suspicious_versions) },
+    product: {
+      activity: {
+        active_installations: number(data.product.activity.active_installations),
+        sessions: number(data.product.activity.sessions),
+        events: number(data.product.activity.events),
+      },
+      daily: rows(data.product.daily, 180).map(r => {
+        if (typeof r.day !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(r.day)) throw Error('invalid day');
+        return { day: r.day, events: number(r.events), sessions: number(r.sessions), active_installations: number(r.active_installations) };
+      }),
+      events: rows(data.product.events, 100).map(r => ({
+        event_name: eventName(r.event_name), event_count: number(r.event_count), active_installations: number(r.active_installations),
+      })),
+      events_truncated: data.product.events_truncated === true,
+      deployments: {
+        started: number(data.product.deployments.started), completed: number(data.product.deployments.completed),
+        cancelled: number(data.product.deployments.cancelled), gateway_timeout: number(data.product.deployments.gateway_timeout),
+      },
+    },
   };
 }
 export function createHandler({ authenticate, aggregate, origins = ['https://ce-deploy.voipnorm.com'], now = () => new Date().toISOString() }) {
