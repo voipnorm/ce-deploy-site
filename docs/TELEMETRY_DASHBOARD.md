@@ -25,7 +25,7 @@ No background polling, browser storage, scheduled jobs, materialized views, or
 new service is used. Responses use `private, no-store`; the page uses a strict
 CSP and no third-party scripts. Only the production site origin is allowed by CORS.
 
-The dashboard API calls one fixed service-only RPC. Six security-invoker views
+The dashboard API calls one fixed service-only RPC. Security-invoker views
 aggregate the data inside Postgres. Browser roles have no grants on views, RPC,
 or raw telemetry tables. The API independently projects and validates a bounded
 response, dropping unrecognized fields. It returns generic errors without logs
@@ -49,6 +49,19 @@ of credentials, tokens, rows, or database errors.
 - Rejections/malformed requests are not persisted in the source aggregates and
   are explicitly described as unavailable, not fabricated as zero.
 
+### Product telemetry v2
+
+- Product events: accepted, idempotent events in the selected rolling window.
+- Sessions: distinct application-process sessions with at least one accepted event.
+- Engaged installations: distinct consenting installations with product events.
+- Daily usage: events, sessions, and active installations by UTC day.
+- Most-used events: event counts and aggregate installation reach; no properties or
+  raw rows are returned to the browser.
+- Deployment outcomes: distinct correlated workflow IDs for starts, completions,
+  cancellations, and gateway timeouts. Completion rate is completed / started.
+- Product telemetry begins with v2-capable releases. Supabase installation counts
+  must not be joined to or interpreted as Aptabase anonymous users.
+
 ## Ownership and deployment
 
 This website repo owns the dashboard migration and function. Desktop telemetry
@@ -58,6 +71,7 @@ shared Auth configuration with this minimal function config.
 
 ```
 supabase db query --linked --project-ref qgnnceoecflhbimcmrya --file supabase/migrations/20260914190000_private_telemetry_dashboard.sql
+supabase db query --linked --project-ref qgnnceoecflhbimcmrya --file supabase/migrations/20260929210000_product_telemetry_dashboard.sql
 supabase db query --linked --project-ref qgnnceoecflhbimcmrya --file supabase/tests/telemetry_dashboard.sql
 supabase functions deploy internal-telemetry-dashboard --project-ref qgnnceoecflhbimcmrya --use-api
 npm test

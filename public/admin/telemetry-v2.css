@@ -1,0 +1,14 @@
+.dashboard-heading {
+  font-size: 1.25rem;
+  margin: 32px 0 10px;
+}
+
+.dashboard-heading:first-child {
+  margin-top: 12px;
+}
+
+.funnel-rate {
+  color: var(--text);
+  font-weight: 650;
+  margin: 16px 0 0;
+}
