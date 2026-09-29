@@ -1,4 +1,5 @@
 ---
+import { CE_DEPLOY_VERSION } from '../config/release.mjs';
 import BaseLayout from '../layouts/BaseLayout.astro';
 const base = import.meta.env.BASE_URL;
 const features = [
@@ -14,9 +15,9 @@ const features = [
 <BaseLayout title="Membership — CE-Deploy" description="Compare CE-Deploy Free, Pro at $25 per month, and Partner Plus at $50 per month. Existing features stay free. Explore paid memberships on Buy Me a Coffee.">
   <div class="page-hero membership-hero">
     <div class="container">
-      <div class="eyebrow">Membership</div>
+      <div class="eyebrow">Membership · CE-Deploy {CE_DEPLOY_VERSION}</div>
       <h1>Your tools today.<br />More ways to grow.</h1>
-      <p>All existing CE-Deploy 16.3.7 functionality stays in Free. Pro adds the new Automation feature, and Partner Plus adds delegated customer management.</p>
+      <p>Free includes the core fleet-management toolkit. Pro adds the new Automation feature, and Partner Plus adds delegated customer management.</p>
     </div>
   </div>
 
@@ -29,7 +30,7 @@ const features = [
           <p class="plan-summary">The existing CE-Deploy toolkit for managing your fleet.</p>
           <p class="price"><strong>$0</strong><span>/ month</span></p>
           <ul class="feature-list">
-            <li>All existing 16.3.7 functionality</li>
+            <li>Core fleet-management toolkit</li>
             <li>Cloud and on-premises operations</li>
             <li>Deployment, macro tools, and Config Auditor</li>
             <li>PhonePilot and Environmental Intelligence</li>
@@ -92,7 +93,7 @@ const features = [
   <section aria-labelledby="questions-heading">
     <div class="container membership-faq">
       <div class="section-heading"><div class="eyebrow">Good to know</div><h2 id="questions-heading">Membership questions.</h2></div>
-      <details open><summary>Will any of my existing tools become paid features?</summary><p>No. All existing CE-Deploy 16.3.7 functionality stays in Free, including the deployment scheduler, recurring jobs, templates, and template chains. The new Automation feature is the addition included with Pro and Partner Plus.</p></details>
+      <details open><summary>Which scheduling tools are included in Free?</summary><p>Free includes the deployment scheduler, recurring jobs, templates, and template chains. The new Automation feature is the addition included with Pro and Partner Plus.</p></details>
       <details><summary>Does xAPI Forge require a Pro membership?</summary><p>No. xAPI Forge is an existing tool and remains included in Free. It does not require a paid membership.</p></details>
       <details><summary>Where can I subscribe or start a trial?</summary><p>Visit <a href="https://buymeacoffee.com/voipnorm/membership">Buy Me a Coffee</a> for Pro and Partner Plus memberships. Each paid tier offers a 30-day trial that starts only when you explicitly choose to begin it in the app.</p></details>
       <details><summary>Can I try Partner Plus after trying Pro?</summary><p>Yes. Partner Plus has its own one-time, 30-day trial, including for people who have already tried or subscribed to Pro. Starting it does not reset your Pro trial dates.</p></details>
