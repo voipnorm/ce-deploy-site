@@ -1,0 +1,17 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import '../styles/blog.css';
+const { title, description } = Astro.props;
+---
+<BaseLayout title={title} description={description}>
+  <slot name="head" slot="head" />
+  <div class="blog-world">
+    <header class="blog-masthead">
+      <a href="/blog/" class="blog-name">VoIPNorm<span>Notes from the engineering desk</span></a>
+      <p>Communications, collaboration, and the tools that get the job done.</p>
+      <nav aria-label="Blog navigation"><a href="/blog/">All posts</a><a href="/blog/rss.xml">Subscribe via RSS</a><a href="https://voipnorm.blogspot.com/">The original archive ↗</a></nav>
+    </header>
+    <div class="blog-paper"><slot /></div>
+    <p class="blog-signoff">A new chapter. The same engineering curiosity. <a href="https://voipnorm.blogspot.com/">VoIPNorm’s original blog ↗</a></p>
+  </div>
+</BaseLayout>

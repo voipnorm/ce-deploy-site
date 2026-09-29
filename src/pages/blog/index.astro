@@ -1,0 +1,39 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import { posts, postUrl, displayDate } from '../../lib/blog';
+const tags = [...new Set(posts.flatMap(p => p.frontmatter.tags))];
+---
+<BlogLayout title="VoIPNorm Blog — CE-Deploy" description="Engineering notes, project history, and practical CE-Deploy workflows from Chris Norman.">
+  <div class="blog-intro"><p class="blog-kicker">The notebook</p><h1>Stories behind the tools.</h1><p>Field experience, lessons learned, and what comes next for CE-Deploy.</p></div>
+  <form class="blog-filters" role="search" onsubmit="return false">
+    <div><label for="blog-search">Search posts</label><input id="blog-search" type="search" placeholder="Search stories, topics, or tools…" /></div>
+    <div><label for="blog-tag">Topic</label><select id="blog-tag"><option value="">All topics</option>{tags.map(tag => <option>{tag}</option>)}</select></div>
+  </form>
+  <p id="blog-results" class="blog-meta" aria-live="polite">{posts.length} {posts.length === 1 ? 'post' : 'posts'}</p>
+  <div class="blog-posts">
+    {posts.map(post => <article class="blog-card" data-search={`${post.frontmatter.title} ${post.frontmatter.description} ${post.rawContent()}`.toLowerCase()} data-tags={JSON.stringify(post.frontmatter.tags)}>
+      <p class="blog-meta"><time datetime={post.frontmatter.date}>{displayDate(post.frontmatter.date)}</time> · {post.minutes} min read</p>
+      <h2><a href={postUrl(post.slug)}>{post.frontmatter.title}</a></h2><p>{post.frontmatter.description}</p>
+      <div class="blog-tags">{post.frontmatter.tags.map(tag => <a href={`?tag=${encodeURIComponent(tag)}`}>{tag}</a>)}</div>
+      <a class="blog-read" href={postUrl(post.slug)}>Read the story <span aria-hidden="true">→</span></a>
+    </article>)}
+  </div>
+  <p id="blog-empty" hidden>No posts match. Try another search or choose “All topics.”</p>
+  <aside class="blog-about"><h2>From VoIPNorm’s desk</h2><p>I’m Chris Norman. This is where I share the engineering behind CE-Deploy and lessons from a life in communications. The story continues here, with the <a href="https://voipnorm.blogspot.com/">old blog’s archive</a> still a part of it.</p></aside>
+</BlogLayout>
+<script>
+  const search = document.querySelector<HTMLInputElement>('#blog-search')!;
+  const tag = document.querySelector<HTMLSelectElement>('#blog-tag')!;
+  const selected = new URLSearchParams(location.search).get('tag');
+  if (selected && [...tag.options].some(o => o.value === selected)) tag.value = selected;
+  function filter() {
+    let count = 0;
+    document.querySelectorAll<HTMLElement>('.blog-card').forEach(card => {
+      card.hidden = !card.dataset.search!.includes(search.value.trim().toLowerCase()) || !!(tag.value && !JSON.parse(card.dataset.tags!).includes(tag.value));
+      if (!card.hidden) count++;
+    });
+    document.querySelector('#blog-results')!.textContent = `${count} ${count === 1 ? 'post' : 'posts'}`;
+    document.querySelector<HTMLElement>('#blog-empty')!.hidden = count > 0;
+  }
+  search.addEventListener('input', filter); tag.addEventListener('change', filter); filter();
+</script>

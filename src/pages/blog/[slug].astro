@@ -1,0 +1,29 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import { posts, postUrl, displayDate } from '../../lib/blog';
+export function getStaticPaths() { return posts.map(post => ({ params: { slug: post.slug }, props: { post } })); }
+const { post } = Astro.props;
+const { Content, frontmatter: meta } = post;
+const headings = post.getHeadings().filter(h => h.depth === 2);
+const canonical = new URL(postUrl(post.slug), Astro.site).href;
+const related = posts.filter(p => p.slug !== post.slug && p.frontmatter.tags.some(t => meta.tags.includes(t))).slice(0, 3);
+---
+<BlogLayout title={`${meta.title} — VoIPNorm`} description={meta.description}>
+  <Fragment slot="head"><link rel="canonical" href={canonical} /><meta property="og:type" content="article" /><meta property="og:title" content={meta.title} /><meta property="og:description" content={meta.description} /><meta property="og:url" content={canonical} /><meta property="og:image" content={new URL('/blog/ce-deploy-version-6.png', Astro.site).href} /></Fragment>
+  <article>
+    <header class="blog-article-header"><a class="blog-kicker" href="/blog/">← The notebook</a><h1>{meta.title}</h1><p class="blog-meta">{meta.author} · <time datetime={meta.date}>{displayDate(meta.date)}</time> · {post.minutes} min read</p><div class="blog-tags">{meta.tags.map(tag => <a href={`/blog/?tag=${encodeURIComponent(tag)}`}>{tag}</a>)}</div></header>
+    <details class="blog-toc"><summary>In this story</summary><ol>{headings.map(h => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol></details>
+    <div class="blog-prose"><Content /></div>
+    <div class="blog-engagement"><h2>Keep the conversation going.</h2><p>Have a CE-Deploy memory or a workflow to share?</p>{meta.discussion && <><a class="blog-cta" href={meta.discussion}>React or discuss on GitHub ↗</a><p class="blog-meta">Read freely. A GitHub account is required to leave a reaction or comment.</p></>}
+    <div class="blog-share"><button id="copy-link" data-url={canonical}>Copy article link</button><a href={`mailto:?subject=${encodeURIComponent(meta.title)}&body=${encodeURIComponent(canonical)}`}>Share by email</a><a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonical)}`}>Share on LinkedIn</a></div><p id="share-status" role="status"></p></div>
+    {related.length > 0 && <aside class="blog-about"><h2>Keep reading</h2>{related.map(p => <p><a href={postUrl(p.slug)}>{p.frontmatter.title}</a></p>)}</aside>}
+    <p><a href="/blog/">← All posts</a> · <a href="/blog/rss.xml">Follow via RSS</a></p>
+  </article>
+</BlogLayout>
+<script>
+ document.querySelector('#copy-link')?.addEventListener('click', async () => {
+   const button = document.querySelector<HTMLButtonElement>('#copy-link')!;
+   try { await navigator.clipboard.writeText(button.dataset.url!); document.querySelector('#share-status')!.textContent = 'Link copied.'; }
+   catch { document.querySelector('#share-status')!.textContent = `Copy this link: ${button.dataset.url}`; }
+ });
+</script>

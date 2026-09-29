@@ -17,6 +17,8 @@ test('site content cannot introduce independent current versions or release URLs
   for (const file of [...files('src'), ...files('public')]) {
     if (!/\.(astro|html|[cm]?js|ts|json|md)$/.test(file)) continue;
     if (file === 'src/config/release.mjs') continue;
+    // Dated editorial posts preserve historical versions, like release notes.
+    if (file.startsWith('src/content/blog/') && file.endsWith('.md')) continue;
     let source = readFileSync(file, 'utf8');
     // Only dated release articles are historical; the rest of this page follows the same rule.
     if (file === 'src/pages/whats-new.astro') {
