@@ -31,4 +31,4 @@ Add a Markdown file to `src/content/blog/`; its filename becomes `/blog/<filenam
 
 Posts sort newest first. Reading time, heading navigation, related posts, tags, search, and `/blog/rss.xml` derive from the Markdown. Historical version references in dated blog articles are exempt from the current-release constant rule. Use the site’s download page when linking to the current release.
 
-For engagement, create an Announcements discussion in the site repository and put its URL in `discussion`. Readers react or comment on GitHub; no embedded tracker, browser token, or comment database is needed. The telephone-box SVG is an original illustration made for this site, not the old Blogger stock photograph.
+For engagement, create an Announcements discussion in the site repository and put its URL in `discussion`. Readers react or comment on GitHub; no embedded tracker, browser token, or comment database is needed. The telephone-box background is an original generated image made for this site, not the old Blogger stock photograph.
