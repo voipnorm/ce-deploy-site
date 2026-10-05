@@ -1,0 +1,13 @@
+---
+import { DISCORD_INVITE_URL } from '../config/support.mjs';
+interface Props { title?: string; }
+const { title = 'Still need help?' } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+<section aria-label="CE-Deploy support">
+  <div class="container"><div class="sponsor support-callout">
+    <div><div class="eyebrow">Community support</div><h2>{title}</h2><p>Ask in the support forum on Discord. Support is best effort, with no guaranteed response time.</p></div>
+    <div class="actions"><a class="button" href={DISCORD_INVITE_URL}>Join Discord</a><a class="button secondary" href={`${base}support/`}>All support options</a></div>
+  </div></div>
+</section>
+<style>.support-callout .actions{flex-shrink:0}.support-callout p{max-width:620px}@media(max-width:960px){.support-callout{flex-wrap:wrap}.support-callout .actions{flex-shrink:1}}</style>

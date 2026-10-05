@@ -1,4 +1,5 @@
 ---
+import SupportCallout from '../components/SupportCallout.astro';
 import { CE_DEPLOY_RELEASE_URL } from '../config/release.mjs';
 import BaseLayout from '../layouts/BaseLayout.astro';
 const base = import.meta.env.BASE_URL;
@@ -13,5 +14,6 @@ const lessons = [
 <BaseLayout title="Documentation — CE-Deploy" description="Practical CE-Deploy training and operational guides.">
   <div class="page-hero"><div class="container"><div class="eyebrow">Documentation</div><h1>Learn the workflows that matter in the field.</h1><p>Start with five guided lessons built from common customer and partner questions. Every lesson gives you the exact path through CE-Deploy, a safe pilot, and a result to verify.</p><div class="actions"><a class="button" href={`${base}documentation/training/`}>Start the field course</a><a class="button secondary" href={CE_DEPLOY_RELEASE_URL}>Get the latest release</a></div></div></div>
   <section><div class="container"><div class="section-heading"><div class="eyebrow">Field course</div><h2>Five guided workflows</h2><p>Follow them in order or open the issue you need to solve today.</p></div><div class="guide-grid">{lessons.map(([number,title,description,anchor]) => <a class="guide-card" href={`${base}documentation/training/#${anchor}`}><span>{number}</span><h3>{title}</h3><p>{description}</p><b>Open lesson →</b></a>)}</div></div></section>
+<SupportCallout title="Still need help?" />
 </BaseLayout>
 <style>.actions{margin-top:28px}.guide-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.guide-card{padding:27px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.012));transition:.16s}.guide-card:hover{transform:translateY(-2px);border-color:#456482}.guide-card>span,.guide-card>b{color:var(--cyan);font-weight:800}.guide-card h3{font-size:1.25rem;margin:14px 0 6px}.guide-card p{color:var(--muted);margin:0 0 22px}@media(max-width:700px){.guide-grid{grid-template-columns:1fr}}</style>

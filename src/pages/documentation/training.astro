@@ -1,4 +1,5 @@
 ---
+import SupportCallout from '../../components/SupportCallout.astro';
 import { CE_DEPLOY_RELEASE_URL } from '../../config/release.mjs';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import LessonHeader from '../../components/LessonHeader.astro';
@@ -66,6 +67,7 @@ REPLACE_WITH_DEVICE_ID,,,xCommand Audio Volume Set Level: 50</pre><div class="ro
     render();
   })();
 </script>
+<SupportCallout title="Questions about a workflow?" />
 </BaseLayout>
 
 <style>
