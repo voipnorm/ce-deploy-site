@@ -4,7 +4,7 @@ description: "How an innerHTML mistake turned imported data into a renderer risk
 date: "2026-10-05"
 author: "Chris Norman / VoIPNorm"
 tags: ["Engineering", "Security", "Under the hood"]
-draft: true
+draft: false
 ---
 
 I built CE-Deploy to help engineers get work done across collaboration endpoints. As it has grown, so has the amount of data it handles: device names, macro logs, CSV files, phonebooks, templates, and output from cloud APIs. All of that data eventually appears somewhere on screen. That sounds routine until you ask what the app does with the text before displaying it.
